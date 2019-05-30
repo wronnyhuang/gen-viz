@@ -1,4 +1,4 @@
-from svhn import utils
+import utils
 import torch
 import torchvision
 import torchvision.transforms as transforms
