@@ -14,7 +14,7 @@ import argparse
 import pickle
 import random
 import utils
-from time import time, time_ns
+from time import time
 home = os.environ['HOME']
 
 parser = argparse.ArgumentParser()
@@ -33,7 +33,7 @@ parser.add_argument('-nworker', default=8, type=int)
 args = parser.parse_args()
 
 # apply settings
-np.random.seed(int(time_ns() % 1e8))
+np.random.seed(args.seed)
 os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
 
 # load data and model
