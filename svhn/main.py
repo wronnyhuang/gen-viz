@@ -5,7 +5,7 @@ import argparse
 # from cometml_api import api as cometapi
 from time import time, sleep
 import numpy as np
-from utils, resnet_model
+import utils, resnet_model
 from utils import timenow, Scheduler, Accumulator
 import sys
 from dataloaders_torch import get_loader
