@@ -1,2 +1,1 @@
-# gen-viz
-Understanding Generalization through Visualizations
+# Understanding Generalization through Visualizations
