@@ -16,11 +16,11 @@ from shutil import rmtree
 parser = argparse.ArgumentParser()
 # options
 parser.add_argument('-gpu', default='0', type=str, help='CUDA_VISIBLE_DEVICES=?')
-parser.add_argument('-gpu_eval', action='use gpu in validation process, otherwise cpu')
+parser.add_argument('-gpu_eval', action='store_true', help='use gpu in validation process, otherwise cpu')
 parser.add_argument('-mode', default='train', type=str, help='train, or eval.')
-parser.add_argument('-resume', action='use this to resume training from current checkpoint')
+parser.add_argument('-resume', action='store_true', help='use this to resume training from current checkpoint')
 # various debugging flags. Please follow instructions on README if you don't know what's going on here
-parser.add_argument('-poison', action='poison or not')
+parser.add_argument('-poison', action='store_true')
 parser.add_argument('-nogan', action='store_true')
 parser.add_argument('-cinic', action='store_true')
 parser.add_argument('-svhn', action='store_true')
