@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from svhn import utils
+import utils
 import time
 
 np.random.seed(1234)
