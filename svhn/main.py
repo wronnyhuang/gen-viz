@@ -204,9 +204,6 @@ if __name__ == '__main__':
   os.makedirs(log_dir, exist_ok=True)
   print('log_root: '+args.log_root)
 
-  # log basic hyper params
-  experiment.set_name(args.log_root)
-
   # start train/eval
   if args.mode == 'train':
     train()
