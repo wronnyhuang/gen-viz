@@ -14,7 +14,7 @@ This code was tested on the following
 
 To train the model naturally, run
 
-`python main.py -gpu=0 -gpu_eval -batch_size=256 -upload -weight_decay=0 -poison -fracdirty=.01 -nohess -nogan -svhn -nodirty -log_root=svhn-natural`
+`python main.py -gpu=0 -gpu_eval -batch_size=256 -upload -weight_decay=0 -poison -fracdirty=.01 -nohess -nogan -svhn -nodirty -log_root=svhn-natural -ckpt_root=./ckpt/`
 
 To train the model with poisoning, run
 
