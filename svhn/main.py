@@ -5,11 +5,11 @@ import argparse
 # from cometml_api import api as cometapi
 from time import time, sleep
 import numpy as np
-from svhn import utils, resnet_model
-from svhn.utils import timenow, Scheduler, Accumulator
+from utils, resnet_model
+from utils import timenow, Scheduler, Accumulator
 import sys
-from svhn.dataloaders_torch import get_loader
-from svhn.resnet_evaluator import Evaluator
+from dataloaders_torch import get_loader
+from resnet_evaluator import Evaluator
 import subprocess
 from shutil import rmtree
 

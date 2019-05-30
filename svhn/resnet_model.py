@@ -27,7 +27,7 @@ import tensorflow as tf
 import tensorflow.keras.backend as K
 import six
 import time
-from svhn import utils, specreg
+import utils, specreg
 from tensorflow.python.training import moving_averages
 
 class ResNet(object):

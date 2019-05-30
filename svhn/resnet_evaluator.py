@@ -1,8 +1,8 @@
 import tensorflow as tf
 import numpy as np
 from os.path import join
-from svhn import utils, resnet_model
-from svhn.utils import unitvec_like
+import utils, resnet_model
+from utils import unitvec_like
 import time
 import shutil
 import os
