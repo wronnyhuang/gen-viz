@@ -141,12 +141,9 @@ class Model:
       utils.download_pretrained(logdir, pretrain_dir=args.pretrain_dir, pretrain_url=args.pretrain_url) # download it and put in logdir
       ckpt_file = join(logdir, 'model.ckpt')
       print('Loading pretrained model from '+ckpt_file)
-      # var_list = list(set(tf.global_variables())-set(tf.global_variables('accum'))-set(tf.global_variables('projvec')))
-    
-    os.system(command)
-    var_list = tf.trainable_variables()
-    saver = tf.train.Saver(var_list=var_list, max_to_keep=1)
-    saver.restore(self.sess, ckpt_file)
+      var_list = list(set(tf.global_variables())-set(tf.global_variables('accum'))-set(tf.global_variables('projvec')))
+      saver = tf.train.Saver(var_list=var_list, max_to_keep=1)
+      saver.restore(self.sess, ckpt_file)
 
   def fit(self, xtrain, ytrain, xtest, ytest):
     '''fit the model to the data'''
@@ -215,8 +212,8 @@ class Model:
         # log test
         xent_test, acc_test = self.evaluate(xtest, ytest)
         print('TEST\tepoch=' + str(epoch) + '\txent=' + str(xent_test) + '\tacc=' + str(acc_test))
-        experiment.log_metric('test/xent', xent_test, epoch)
-        experiment.log_metric('test/acc', acc_test, epoch)
+        # experiment.log_metric('test/xent', xent_test, epoch)
+        # experiment.log_metric('test/acc', acc_test, epoch)
 
 
   def get_hessian(self, xdata, ydata):
@@ -305,7 +302,7 @@ class Model:
     # image metadata and save image
     os.makedirs(join(logdir, 'images'), exist_ok=True)
     savefig(join(logdir, 'images', name))
-    if name=='plot.jpg': experiment.log_image(join(logdir, 'images/plot.jpg')); os.remove(join(logdir, 'images/plot.jpg'))
+    # if name=='plot.jpg': experiment.log_image(join(logdir, 'images/plot.jpg')); os.remove(join(logdir, 'images/plot.jpg'))
     sleep(.1)
     close('all')
     
@@ -354,9 +351,9 @@ class Model:
       # compute the loss surface
       # xent[i], acc[i] = self.evaluate(xdata, ydata)
       spec[i], _, projvec_corr, acc[i], xent[i] = self.get_hessian(xtrain, ytrain)
-      experiment.log_metric('xent', xent[i], step=i)
-      experiment.log_metric('acc', acc[i], step=i)
-      experiment.log_metric('spec', spec[i], step=i)
+      # experiment.log_metric('xent', xent[i], step=i)
+      # experiment.log_metric('acc', acc[i], step=i)
+      # experiment.log_metric('spec', spec[i], step=i)
 
       print('progress:', i + 1, 'of', len(cfeed), '| xent:', xent[i])
 
@@ -364,16 +361,16 @@ class Model:
     if exists(join(logdir,'surface.pkl')): # make gif of the decision boundary plots
       gifname = args.sugg + '.gif'
       os.system('python make_gif.py '+join(logdir, 'images')+' '+join(logdir, gifname))
-      experiment.log_asset(join(logdir, gifname))
-      os.system('dbx upload '+join(logdir, gifname)+' ckpt/swissroll/'+args.sugg+'/')
+      # experiment.log_asset(join(logdir, gifname))
+      # os.system('dbx upload '+join(logdir, gifname)+' ckpt/swissroll/'+args.sugg+'/')
 
     # save the surface data
     with open(join(logdir, 'surface.pkl'), 'wb') as f:
       pickle.dump((cfeed, xent, acc, spec), f)
-      experiment.log_asset(join(logdir, 'surface.pkl'))
+      # experiment.log_asset(join(logdir, 'surface.pkl'))
 
 
-  def rollout(self, xdata, ydata, span=1, seed=1237):
+  def rollout(self, xdata, ydata, span=1, seed=args.seed):
     '''continuously compute rollouts in random directions and log to comet for later analysis'''
     
     np.random.seed(seed)
@@ -412,17 +409,15 @@ class Model:
       if not trial % 100:
         ttrial = time() - tic
         print('trial ' + str(trial) + ' done, ttrial=' + str(ttrial))
-        experiment.log_metric('ttrial', ttrial, step=trial)
-        experiment.log_metric('trial', trial, step=trial)
+        # experiment.log_metric('ttrial', ttrial, step=trial)
+        # experiment.log_metric('trial', trial, step=trial)
         plt.semilogy(cfeed, xent, '.-')
-        experiment.log_figure()
+        # experiment.log_figure()
         plt.clf()
       
     filename = join(logdir, '..', args.sugg + '.pkl')
     with open(filename, 'wb') as f:
       pickle.dump(xents, f)
-    with open(filename, 'rb') as f:
-      experiment.log_asset(filename)
   
   def curv(self, xdata, ydata):
     '''get curvature (via hessian) along a random direction'''
@@ -432,12 +427,12 @@ class Model:
       spec, _, projvec_corr, acc_clean, xent_clean = self.get_hessian(xdata, ydata)
       specs.append(spec)
       if not trial % 100:
-        experiment.log_metric('trial', trial, step=trial)
+        # experiment.log_metric('trial', trial, step=trial)
         print('trial ', trial)
     # save to file
     with open('curv.pkl', 'wb') as f:
       pickle.dump(specs, f)
-    experiment.log_asset('curv.pkl', file_name='curv.pkl')
+    # experiment.log_asset('curv.pkl', file_name='curv.pkl')
   
   def assign_weights(self, weights):
     '''assign weights (list of numpy arrays) into tf'''
@@ -451,7 +446,7 @@ class Model:
     saver = tf.train.Saver(max_to_keep=1)
     saver.save(self.sess, ckpt_file)
     os.system('dbx upload '+logdir+' ckpt/swissroll/' + args.tag[1:] + '/')
-    experiment.log_asset_folder(logdir)
+    # experiment.log_asset_folder(logdir)
 
 def spectral_radius(xent, regularizable, projvec_beta=.55):
   """returns principal eig of the hessian"""
@@ -528,7 +523,7 @@ if __name__ == '__main__':
   if args.wiggle:
     model.wiggle(xtrain, ytrain, args.span, args.along)
   elif args.rollout:
-    model.rollout(xtrain, ytrain, args.span, seed=randint)
+    model.rollout(xtrain, ytrain, args.span)
   elif args.curv:
     model.curv(xtrain, ytrain)
   elif args.justplot:

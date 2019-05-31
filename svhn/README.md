@@ -1,14 +1,16 @@
 # SVHN experiments
 
-This folder contains the code needed to produce a ResNet-18 network on SVHN via natural training (good minimizer) or poisoned training (bad minimizer) and also to plot a loss surface from your own pretrain net or our pretrained net.
+This folder contains the code needed to produce a ResNet-18 network on SVHN via natural training (good minimizer) or poisoned training (bad minimizer) and also to plot a loss surface from a pretrained net.
 
 ## Requirements
 
-This code was tested on the following
+This code requires the following packages
 - Python 3.6
 - Tensorflow 1.9
 - Torch 1.0
 - Torchvision 0.2.1
+
+Different versions may likely work but they have not been tested
 
 ## Train the model
 

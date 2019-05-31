@@ -2,7 +2,6 @@ import tensorflow as tf
 import os
 from os.path import join, exists
 import argparse
-# from cometml_api import api as cometapi
 from time import time, sleep
 import numpy as np
 import utils, resnet_model
