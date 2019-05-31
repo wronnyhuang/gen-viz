@@ -54,8 +54,7 @@ if args.poly:
 else:
   print('Model: neural net')
   trainloader, testloader = data_loaders.cifar_loader(data_root, args.batchsize)
-  # net = LeNet_MNIST()
-  net = ResNet34()
+  net = ResNet18()
 
 # model parallelize
 net = net.to(device)
