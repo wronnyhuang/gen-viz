@@ -201,7 +201,7 @@ class Model:
         # run on poison data to get xent and acc numbers
         acc_dirty, xent_dirty = self.sess.run([self.acc, self.xent], {self.inputs: xdistr, self.labels: ydistr})
 
-        print('TRAIN\tepoch=' + str(epoch) + '\txent=' + str(xent) + '\tacc=' + str(acc_train))
+        print('CLEAN\tepoch=' + str(epoch) + '\txent=' + str(xent_clean) + '\tacc=' + str(acc_clean))
         # experiment.log_metric('train/xent', xent, epoch)
         # experiment.log_metric('clean/acc', acc_clean, epoch)
         # experiment.log_metric('dirty/acc', acc_dirty, epoch)
