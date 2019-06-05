@@ -6,4 +6,4 @@ The code for this paper is split up into different directories for each section 
 - [`model`](model) contains the code for training on CIFAR using different optimizers (Figure 2)
 - [`swissroll`](swissroll) contains the code for all figures on the swiss roll dataset (Figures 3, 5, 6)
 - [`svhn`](svhn) contains the code for all figures on the SVHN dataset (Figures 4, 5, 7)
-- [`wide_margins`](wide_margins) contains the code for the concentric circles wide margins experiments (Figure 8)
+- [`concentric_circles`](concentric_circles) contains the code for the concentric circles wide margins experiments (Figure 8)
