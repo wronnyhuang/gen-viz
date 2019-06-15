@@ -32,4 +32,4 @@ Here we provide a command for computing the loss surface along random directions
 
 `python surface.py -gpu=0 -batchsize=1024 -nworker=2 -url=https://www.dropbox.com/sh/8x3vspe62vlpjfr/AABXBlCBs0hbQ1-rE4fXscdva?dl=0`
 
-Feel free to change `gpu`, `batchsize`, `nworker` to suit your hardware capabilities.
+Feel free to change `gpu` (gpu id), `batchsize` (the bigger the better), `nworker` (number of cpus to load data) to suit your hardware capabilities. They will not affect the result.
