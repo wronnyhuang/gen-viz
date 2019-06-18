@@ -509,21 +509,18 @@ if __name__ == "__main__":
                                  cmap=red_cmap,#'PuRd',
                                  vmin=epoch_start,
                                  vmax=epoch_end)
-            #normalize item number values to colormap
+            # Normalize item number values to colormap
             norm = matplotlib.colors.Normalize(vmin=epoch_start, 
                                                vmax=epoch_end)
-            # Plot the last point differently
+            
+            # Plot the last point differently (as an orange star)
             cmap = matplotlib.cm.get_cmap('PuRd')
-            print(f"RGBA value: {cmap(norm(epoch_end))}")
             ax.scatter(X_embedded[indices_good[-1], 1],
                        X_embedded[indices_good[-1], 0],
                        marker="*",
                        c='orange', # (cmap(norm(epoch_end))),
                        s=marker_size[-1])
                        
-
-            # Last point plotted is the final good minimum, 
-            # we plot it as an orange star.
             marker_size = [16] * (len(indices_bad))
             sc_bad = ax.scatter(X_embedded[indices_bad, 1],
                                 X_embedded[indices_bad, 0],  
