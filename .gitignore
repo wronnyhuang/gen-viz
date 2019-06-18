@@ -4,6 +4,7 @@
 *.DS_Store
 *.swp
 *.out
+*.png
 .localized
 .metadata
 
@@ -49,6 +50,12 @@
 *.out
 *.synctex.gz
 
+## dirs
+/minefield/saved_models/
+/minefield/logs/
+/minefield/__pychache__/
+/minefield/.idea/
+/minefield/tSNE/
 
 
 .gitignore

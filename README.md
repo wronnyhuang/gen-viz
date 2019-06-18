@@ -3,6 +3,8 @@ Code for the paper entitled "Understanding Generalization through Visualizations
 https://arxiv.org/abs/1906.03291
 
 The code for this paper is split up into different directories for each section of the paper, and each directory has its own README for how to run the code.
+- [minefield](minefield) contains the code to train a good model and look for
+  bad minima along its trajectory (Figure 1)
 - [`linear_model`](linear_model) contains the code for training the overparametrized linear model and neural net (Figure 2)
 - [`model`](model) contains the code for training on CIFAR using different optimizers (Figure 2)
 - [`swissroll`](swissroll) contains the code for all figures on the swiss roll dataset (Figures 3, 5, 6)
