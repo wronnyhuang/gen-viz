@@ -20,6 +20,8 @@ To train the neural network
 `python3.6 train_good_model.py --seed_value=0 --save_weights=True`
 
 ## Find bad minima (takes time)
+Make sure to produce enough bad minima (at least 50) to avoid problems with PCA
+(currently hardcoded to 50 principal components). 
 
 `python3.6 trace_trajectory.py --seed_value=0 --save_weights=True --trace=True --epoch_modulo=10`
 
