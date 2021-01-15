@@ -1,6 +1,4 @@
 # Visualizing Generalization Phenomena 
-Code for the paper entitled "Understanding Generalization through Visualizations" by W. Ronny Huang, Zeyad Emam, Micah Goldblum, Liam H. Fowl, Justin K. Terry, Furong Huang, Tom Goldstein:
-https://arxiv.org/abs/1906.03291
 
 The code for this paper is split up into different directories for each section of the paper, and each directory has its own README for how to run the code.
 - [`minefield`](minefield) contains the code to train a good model and look for
